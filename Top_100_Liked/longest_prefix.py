@@ -21,3 +21,5 @@ def longestCommonPrefix(strs: List[str]) -> str:
 
 result = longestCommonPrefix(["dog","racecar","car"])
 print(result)
+
+# First Attempt: Runtime 43 ms, Mem 16.29 MB

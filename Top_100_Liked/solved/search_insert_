@@ -1,0 +1,54 @@
+from typing import List
+
+# Fail Attempt 1
+def searchInsert(nums: List[int], target: int) -> int:
+    # Trivial Cases
+    if target < nums[0]:
+        return 0
+    if target > nums[-1]:
+        return len(nums)
+    # Initialise variables
+    final_result = return_insert_position(nums,0,target)
+    return final_result
+
+
+def return_insert_position(nums, min_pos, target):
+    if len(nums) == 0:
+        return min_pos
+    # Termination case where we are at the leaf node
+    if len(nums) == 1:
+        if target <= nums[0]:
+            return min_pos
+        return min_pos + 1
+    print(nums)
+    middle = None
+    # If length of the array is odd, perfect middle
+    if len(nums)%2 != 0:
+        middle = (len(nums)-1)//2
+    # if length of array is even, we take the right center index as the middle
+    else:
+        middle = len(nums)//2
+    # If the number is one of the middle nodes in the tree
+    if target == nums[middle]:
+        return min_pos + middle
+    elif target < nums[middle]:
+        return return_insert_position(nums[:middle], min_pos, target)
+    else:
+        return return_insert_position(nums[middle+1:], min_pos+middle+1, target)
+        
+
+# Editorial Answer
+# def searchInsert(self, nums: List[int], target: int) -> int:
+#         left, right = 0, len(nums) - 1
+#         while left <= right:
+#             pivot = (left + right) // 2
+#             if nums[pivot] == target:
+#                 return pivot
+#             if target < nums[pivot]:
+#                 right = pivot - 1
+#             else:
+#                 left = pivot + 1
+#         return left
+
+    
+print(searchInsert([1,2,4,6,7], 3))
